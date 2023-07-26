@@ -2,8 +2,6 @@
 const getId = (id) => document.getElementById(id)
 const getElement = (selector) => document.querySelector(selector)
 const thayDo = function (type, imgSrc) {
-  console.log(getElement(`.${type}`))
-  console.log(imgSrc);
   getElement(`.${type}`).style.background = `url(${imgSrc}) 0% 0% / 100%`
 }
 
@@ -40,9 +38,7 @@ const getJson = function () {
             id="${type}-tabs"
             role="tabpanel"
             aria-labelledby="${type}-tabs"
-            >
-            
-            
+            >          
             `
       }
       else {
@@ -69,27 +65,24 @@ const getJson = function () {
             >
             `
       }
-
       tabPanes.map((res) => {
         const { id, type, name, desc, imgSrc_jpg, imgSrc_png } = res;
         if (tabLabel.type === type) {
           tabContent += `<div class="product-item">
-                                  <img class="product-img" width="120px" src="${imgSrc_jpg}" alt="" />
+                                  <img class="product-img" src="${imgSrc_jpg}" alt="" />
                                   <p> ${name}</p>
-                                  <button onclick="thayDo('${type}','${imgSrc_png}' )">Thử đồ</button>
+                                  <button class="btn btn-outline-dark" onclick="thayDo('${type}','${imgSrc_png}' )">Thử đồ</button>
                           </div> `
         }
       })
       tabContent += `</div>`
     }
-
     )
     getId('tabPills').innerHTML = tab
     getId('tabContent').innerHTML = tabContent
     // console.log(tabContent);
 
   }).catch(err => console.log(err))
-
 }
 
 getJson()
